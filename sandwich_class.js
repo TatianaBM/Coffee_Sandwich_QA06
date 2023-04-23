@@ -4,7 +4,7 @@ export default class SandwichClass {
         this.butter = 'butter'
         this.pickles = 'pickles'
         this.salad = 'salad'
-        this.mainTopping = mainTopping
+        this.mainTopping = mainTopping.charAt(0).toUpperCase() + mainTopping.slice(1,mainTopping.length).toLocaleLowerCase()
     }
     printRecipe() {
         let intro = '\nBelow are the steps to prepare your sandwich: '
@@ -20,9 +20,9 @@ export default class SandwichClass {
     }
     calculateSandwichPrice() {
         let menu = {
-            'salami': 5,
-            'salmon': 6,
-            'cheese': 5.5,
+            'Salami': 5,
+            'Salmon': 6,
+            'Cheese': 5.5,
         }
         for (let key in menu) {
             if (this.mainTopping == key) return (menu[key])
