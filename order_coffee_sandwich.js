@@ -1,21 +1,17 @@
 import Coffee from "./coffee_class.js"
 import SandwichClass from "./sandwich_class.js"
 class YourCoffeeOrder extends Coffee {
-    constructor (coffeeType, cupSize, quantity){
+    constructor(coffeeType, cupSize, quantity) {
         super(coffeeType, cupSize)
         this.quantity = quantity
     }
-    calculateOrderPrice(){
+    calculateOrderPrice() {
         let orderPrice = this.quantity * this.calculatePrice()
         return orderPrice
     }
-    showYourOrder(){
-        console.log('\nYour order is:')
-        let yourOrder = { 'Coffee choice': this.coffeeType, Cup : this.cupSize, Quantity: this.quantity, 'Total USD': this.calculateOrderPrice() }
-        for (let key in yourOrder) {
-            let newKey = key.padEnd(25, '.')
-            console.log(newKey, yourOrder[key])
-        }
+    showYourOrder() {
+        let yourOrder = {'Menu item': this.coffeeType, Cup: this.cupSize, Quantity: this.quantity, 'Total USD': this.calculateOrderPrice()}
+        return yourOrder
     }
 }
 class MakeOrderSandwich extends SandwichClass {
@@ -28,12 +24,8 @@ class MakeOrderSandwich extends SandwichClass {
         return orderPrice
     }
     showYourOrder() {
-        console.log('\nYour order is:')
-        let yourOrder = { 'Sandwich with': this.mainTopping, Quantity: this.quantity, 'Total USD': this.calculateOrderPrice() }
-        for (let key in yourOrder) {
-            let newKey = key.padEnd(25, '.')
-            console.log(newKey, yourOrder[key])
-        }
+        let yourOrder = {'Menu item': `${this.mainTopping} sandwich`, Quantity: this.quantity, 'Total USD': this.calculateOrderPrice()}
+        return yourOrder
     }
 }
 function personalisedWelcomeMessage(name) {
@@ -56,9 +48,9 @@ function printCupsAndPrices() {
 function showSandwichesAndPrices() {
     console.log('\nWe offer sandwiches with below toppings (price in USD):')
     let menu = {
-        'salami': 5,
-        'salmon': 6,
-        'cheese': 5.5,
+        'Salami': 5,
+        'Salmon': 6,
+        'Cheese': 5.5,
     }
     for (let key in menu) {
         let keyNew = key.padEnd(25, '.')
@@ -71,6 +63,26 @@ printCoffeeMenu()
 printCupsAndPrices()
 showSandwichesAndPrices()
 
-let coffeeOrder1 = new YourCoffeeOrder('caPPuccino', 'big',2)
-let sandwichOrder1 = new MakeOrderSandwich('cheese', 1)
+let coffee1 = new YourCoffeeOrder('caPPuccino', 'big', 2)
+let sandwich1 = new MakeOrderSandwich('cheese', 1)
+let coffee2 = new YourCoffeeOrder('black cOffee', 'small', 2)
+let sandwich2 = new MakeOrderSandwich('SALAMI', 3)
+
+function calculateTotalCheck() {
+    let check = [...arguments]
+    return `\nTotal order price is: ${check.reduce((sum, el) => sum + el, 0)} USD`
+}
+
+function printTotalOrder() {
+    let arrayOrders = [...arguments]
+    console.log('\nYour total order:')
+    for (let i = 0; i < arrayOrders.length; i++) {
+        for (let key in arrayOrders[i]) {
+            let newKey = key.padEnd(25, '.')
+            console.log(newKey, arrayOrders[i][key])
+        }
+    }
+}
+printTotalOrder(coffee1.showYourOrder(), coffee2.showYourOrder(), sandwich1.showYourOrder(), sandwich2.showYourOrder())
+console.log(calculateTotalCheck(coffee1.calculateOrderPrice(), coffee2.calculateOrderPrice(), sandwich1.calculateOrderPrice(), sandwich2.calculateOrderPrice()))
 
