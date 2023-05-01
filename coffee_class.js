@@ -33,7 +33,7 @@ export default class Coffee {
             recipeCoffee =newRecipe.map((el,i) => i == 0 || i == newRecipe.length-1 ? el : `${i}.${el}`).join('\n')
                     }
         else if (this.coffeeType == 'Cappuccino') {
-            newRecipe.splice(7, 1)
+            newRecipe.splice(9, 1)
             recipeCoffee =newRecipe.map((el,i) => i == 0 || i == newRecipe.length-1 ? el : `${i}.${el}`).join('\n')
                     }
         else return ('Oops..Something is wrong. Please enter correct data')
