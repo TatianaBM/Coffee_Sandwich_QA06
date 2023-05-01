@@ -58,23 +58,21 @@ function showSandwichesAndPrices() {
     }
 }
 
-personalisedWelcomeMessage('Miro')
+personalisedWelcomeMessage('Ivan')
 printCoffeeMenu()
 printCupsAndPrices()
 showSandwichesAndPrices()
 
-let coffee1 = new YourCoffeeOrder('caPPuccino', 'big', 2)
-let sandwich1 = new MakeOrderSandwich('cheese', 1)
-let coffee2 = new YourCoffeeOrder('black cOffee', 'small', 2)
-let sandwich2 = new MakeOrderSandwich('SALAMI', 3)
+let coffee1 = new YourCoffeeOrder('black coffee', 'small', 3)
+let sandwich1 = new MakeOrderSandwich('salami', 3)
+let coffee2 = new YourCoffeeOrder('flat white coffee', 'big', 5)
+let sandwich2 = new MakeOrderSandwich('CHEESE', 3)
 
-function calculateTotalCheck() {
-    let check = [...arguments]
-    return `\nTotal order price is: ${check.reduce((sum, el) => sum + el, 0)} USD`
+function calculateTotalCheck(...orderPrice){
+    return `\nTotal order price is: ${orderPrice.reduce((sum, el) => sum + el, 0)} USD`
 }
 
-function printTotalOrder() {
-    let arrayOrders = [...arguments]
+function printTotalOrder(...arrayOrders) {
     console.log('\nYour total order:')
     for (let i = 0; i < arrayOrders.length; i++) {
         for (let key in arrayOrders[i]) {
@@ -86,3 +84,4 @@ function printTotalOrder() {
 printTotalOrder(coffee1.showYourOrder(), coffee2.showYourOrder(), sandwich1.showYourOrder(), sandwich2.showYourOrder())
 console.log(calculateTotalCheck(coffee1.calculateOrderPrice(), coffee2.calculateOrderPrice(), sandwich1.calculateOrderPrice(), sandwich2.calculateOrderPrice()))
 
+console.log(coffee2.printCoffeeRecipe())
